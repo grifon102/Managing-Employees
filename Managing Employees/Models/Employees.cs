@@ -9,7 +9,14 @@ namespace Managing_Employees.Models
 {
     public class Employees
     {
-        
+        public Employees()
+        {
+            this.ID = 0;
+            this.FIO = "Fktrctq";
+            this.Birthdate = DateTime.Now;
+            this.Position = null;
+            this.Salary = 0;
+        }
 
         public Employees(int id, string fio, DateTime dateTime, string position, decimal salary)
         {

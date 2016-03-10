@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Employees>
   <Employee>
-    <ID></ID>
-    <FIO></FIO>
-    <Birthdate></Birthdate>
-    <Position></Position>
-    <Salary></Salary>
+    <ID>1</ID>
+    <FIO>Белов Алексей</FIO>
+    <Birthdate>10.03.1984</Birthdate>
+    <Position>Разработчик</Position>
+    <Salary>90000</Salary>
   </Employee>
 </Employees> 

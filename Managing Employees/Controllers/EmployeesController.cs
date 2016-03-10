@@ -16,37 +16,42 @@ namespace Managing_Employees.Controllers
             _repository = repository;
         }
 
+        public EmployeesController()
+        {
+
+        }
+
         public ActionResult Index()
         {
-            return View(_repository.GetEmployees();
+            return View(_repository.GetEmployees());
         }
 
 
         public ActionResult Details(int id)
         {
-            Billing billing = _repository.GetBillingByID(id);
-            if (billing == null)
+            Employees employee = _repository.GetEmployeeById(id);
+            if (employee == null)
                 return RedirectToAction("Index");
 
-            return View(billing);
+            return View(employee);
         }
 
 
         public ActionResult Create()
         {
-            ViewBag.TypeList = typeList;
+            
             return View();
         }
 
 
         [HttpPost]
-        public ActionResult Create(Billing billing)
+        public ActionResult Create(Employees employee)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _repository.InsertBilling(billing);
+                    _repository.InsertEmployee(employee);
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
@@ -56,29 +61,29 @@ namespace Managing_Employees.Controllers
                 }
             }
 
-            return View(billing);
+            return View(employee);
         }
 
 
         public ActionResult Edit(int id)
         {
-            Billing billing = _repository.GetBillingByID(id);
-            if (billing == null)
+            Employees employee = _repository.GetEmployeeById(id);
+            if (employee == null)
                 return RedirectToAction("Index");
 
-            ViewBag.TypeList = typeList;
-            return View(billing);
+            
+            return View(employee);
         }
 
 
         [HttpPost]
-        public ActionResult Edit(Billing billing)
+        public ActionResult Edit(Employees employee)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _repository.EditBilling(billing);
+                    _repository.UpdateEmployee(employee);
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
@@ -88,16 +93,16 @@ namespace Managing_Employees.Controllers
                 }
             }
 
-            return View(billing);
+            return View(employee);
         }
 
 
         public ActionResult Delete(int id)
         {
-            Billing billing = _repository.GetBillingByID(id);
-            if (billing == null)
+            Employees employee = _repository.GetEmployeeById(id);
+            if (employee == null)
                 return RedirectToAction("Index");
-            return View(billing);
+            return View(employee);
         }
 
 
@@ -106,14 +111,14 @@ namespace Managing_Employees.Controllers
         {
             try
             {
-                _repository.DeleteBilling(id);
+                _repository.DeleteEmployee(id);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
                 //error msg for failed delete in XML file
                 ViewBag.ErrorMsg = "Error deleting record. " + ex.Message;
-                return View(_repository.GetBillingByID(id));
+                return View(_repository.GetEmployeeById(id));
             }
         }
     }
