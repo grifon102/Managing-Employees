@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Managing_Employees.Models
 {
-    interface IEmployeeRepository
+    public interface IEmployeeRepository
     {
         IEnumerable<Employees> GetEmployees();
 
