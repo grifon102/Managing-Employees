@@ -14,4 +14,11 @@
     <Position>Администратор</Position>
     <Salary>65000</Salary>
   </Employee>
+  <Employee>
+    <ID>3</ID>
+    <FIO>Aнтон</FIO>
+    <Birthdate>10.02.1981</Birthdate>
+    <Position>Администратор</Position>
+    <Salary>67000</Salary>
+  </Employee>
 </Employees>

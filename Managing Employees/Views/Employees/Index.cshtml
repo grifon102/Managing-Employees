@@ -12,16 +12,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FIO)
+            @Html.ActionLink("ФИО","Index",new { SortOrder = (ViewBag.SortOrder==null?"Asc":(ViewBag.SortOrder == "Asc" ? "Desc":"Asc")) , SortBy = "FIO"})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Birthdate)
+            @Html.ActionLink("Дата рождения", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), SortBy = "Birthdate" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Position)
+            @Html.ActionLink("Должность", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), SortBy = "Position" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Salary)
+            @Html.ActionLink("Заработная плата", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), SortBy = "Salary" })
         </th>
         <th></th>
     </tr>

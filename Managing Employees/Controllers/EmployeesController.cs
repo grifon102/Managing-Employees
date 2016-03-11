@@ -18,10 +18,72 @@ namespace Managing_Employees.Controllers
             _repository = new EmployeeRepository();
         }
 
-        public ActionResult Index()
+        public  ActionResult Index(string SortOrder,string SortBy)
         {
-            var emp = _repository.GetEmployees();
+            ViewBag.SortOrder = SortOrder;
+            ViewBag.SortBy = SortBy;
 
+            var  emp = _repository.GetEmployees();
+
+            switch (SortBy)
+            {
+                case "FIO":
+                switch (SortOrder)
+                {
+                    case "Asc":
+                        emp = emp.OrderBy(x => x.FIO).ToList();
+                        break;
+                    case "Desc":
+                        emp = emp.OrderByDescending(x => x.FIO).ToList();
+                        break;
+                    default:
+                        break;
+                }
+                break;
+
+                case "Birthdate":
+                    switch (SortOrder)
+                    {
+                        case "Asc":
+                            emp = emp.OrderBy(x => x.Birthdate).ToList();
+                            break;
+                        case "Desc":
+                            emp = emp.OrderByDescending(x => x.Birthdate).ToList();
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+
+                case "Position":
+                    switch (SortOrder)
+                    {
+                        case "Asc":
+                            emp = emp.OrderBy(x => x.Position).ToList();
+                            break;
+                        case "Desc":
+                            emp = emp.OrderByDescending(x => x.Position).ToList();
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+
+                case "Salary":
+                    switch (SortOrder)
+                    {
+                        case "Asc":
+                            emp = emp.OrderBy(x => x.Salary).ToList();
+                            break;
+                        case "Desc":
+                            emp = emp.OrderByDescending(x => x.Salary).ToList();
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+            }
+            
             return View(emp);
         }
 
@@ -120,5 +182,7 @@ namespace Managing_Employees.Controllers
                 return View(_repository.GetEmployeeById(id));
             }
         }
+
+
     }
 }
