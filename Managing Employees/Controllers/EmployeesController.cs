@@ -11,19 +11,18 @@ namespace Managing_Employees.Controllers
     {
         private IEmployeeRepository _repository;
 
-        public EmployeesController(IEmployeeRepository repository)
-        {
-            _repository = repository;
-        }
+        
 
         public EmployeesController()
         {
-
+            _repository = new EmployeeRepository();
         }
 
         public ActionResult Index()
         {
-            return View(_repository.GetEmployees());
+            var emp = _repository.GetEmployees();
+
+            return View(emp);
         }
 
 
