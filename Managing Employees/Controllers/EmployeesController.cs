@@ -11,35 +11,34 @@ namespace Managing_Employees.Controllers
     {
         private IEmployeeRepository _repository;
 
-        
-
         public EmployeesController()
         {
             _repository = new EmployeeRepository();
         }
 
-        public  ActionResult Index(string SortOrder,string SortBy)
+        public ActionResult Index(string SortOrder,string SortBy,string Page)
         {
+            //Sorting on pages
             ViewBag.SortOrder = SortOrder;
             ViewBag.SortBy = SortBy;
 
-            var  emp = _repository.GetEmployees();
+            var emp = _repository.GetEmployees();
 
             switch (SortBy)
             {
                 case "FIO":
-                switch (SortOrder)
-                {
-                    case "Asc":
-                        emp = emp.OrderBy(x => x.FIO).ToList();
-                        break;
-                    case "Desc":
-                        emp = emp.OrderByDescending(x => x.FIO).ToList();
-                        break;
-                    default:
-                        break;
-                }
-                break;
+                    switch (SortOrder)
+                    {
+                        case "Asc":
+                            emp = emp.OrderBy(x => x.FIO).ToList();
+                            break;
+                        case "Desc":
+                            emp = emp.OrderByDescending(x => x.FIO).ToList();
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
 
                 case "Birthdate":
                     switch (SortOrder)
@@ -83,7 +82,90 @@ namespace Managing_Employees.Controllers
                     }
                     break;
             }
-            
+
+            ViewBag.TotalPages = Math.Ceiling(emp.Count() / 10.0);
+            int page = int.Parse(Page == null ? "1" : Page);
+            ViewBag.Page = page;
+            emp = emp.Skip((page - 1) * 10).Take(10);
+
+
+            return View(emp);
+        }
+
+       
+        public ActionResult GetEmployees(string SortOrder, string SortBy, string Page)
+        {
+            //Sorting on pages
+            ViewBag.SortOrder = SortOrder;
+            ViewBag.SortBy = SortBy;
+
+            var emp = _repository.GetEmployees();
+
+            switch (SortBy)
+            {
+                case "FIO":
+                    switch (SortOrder)
+                    {
+                        case "Asc":
+                            emp = emp.OrderBy(x => x.FIO).ToList();
+                            break;
+                        case "Desc":
+                            emp = emp.OrderByDescending(x => x.FIO).ToList();
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+
+                case "Birthdate":
+                    switch (SortOrder)
+                    {
+                        case "Asc":
+                            emp = emp.OrderBy(x => x.Birthdate).ToList();
+                            break;
+                        case "Desc":
+                            emp = emp.OrderByDescending(x => x.Birthdate).ToList();
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+
+                case "Position":
+                    switch (SortOrder)
+                    {
+                        case "Asc":
+                            emp = emp.OrderBy(x => x.Position).ToList();
+                            break;
+                        case "Desc":
+                            emp = emp.OrderByDescending(x => x.Position).ToList();
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+
+                case "Salary":
+                    switch (SortOrder)
+                    {
+                        case "Asc":
+                            emp = emp.OrderBy(x => x.Salary).ToList();
+                            break;
+                        case "Desc":
+                            emp = emp.OrderByDescending(x => x.Salary).ToList();
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+            }
+
+            ViewBag.TotalPages = Math.Ceiling(emp.Count() / 10.0);
+            int page = int.Parse(Page == null ? "1" : Page);
+            ViewBag.Page = page;
+            emp = emp.Skip((page - 1) * 10).Take(10);
+
+
             return View(emp);
         }
 
@@ -113,6 +195,7 @@ namespace Managing_Employees.Controllers
                 try
                 {
                     _repository.InsertEmployee(employee);
+                    TempData["Message"] = "Сотрудник " + employee.FIO + " добавлен"; 
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)

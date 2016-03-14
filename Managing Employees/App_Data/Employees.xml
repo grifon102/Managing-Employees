@@ -8,17 +8,80 @@
     <Salary>90000</Salary>
   </Employee>
   <Employee>
-    <ID>2</ID>
-    <FIO>Новичков</FIO>
-    <Birthdate>10.02.1983</Birthdate>
+    <ID>4</ID>
+    <FIO>Aнтон 2</FIO>
+    <Birthdate>10.02.1985</Birthdate>
     <Position>Администратор</Position>
+    <Salary>10000</Salary>
+  </Employee>
+  <Employee>
+    <ID>5</ID>
+    <FIO>Aнтон 3</FIO>
+    <Birthdate>10.02.1982</Birthdate>
+    <Position>Менеджер</Position>
+    <Salary>78000</Salary>
+  </Employee>
+  <Employee>
+    <ID>6</ID>
+    <FIO>Aнтон 4</FIO>
+    <Birthdate>10.02.1982</Birthdate>
+    <Position>Курьер</Position>
+    <Salary>13000</Salary>
+  </Employee>
+  <Employee>
+    <ID>7</ID>
+    <FIO>Aнтон 2</FIO>
+    <Birthdate>10.02.1982</Birthdate>
+    <Position>Менеджер</Position>
+    <Salary>13000</Salary>
+  </Employee>
+  <Employee>
+    <ID>8</ID>
+    <FIO>Aнтон 4</FIO>
+    <Birthdate>10.02.1983</Birthdate>
+    <Position>Менеджер</Position>
     <Salary>65000</Salary>
   </Employee>
   <Employee>
-    <ID>3</ID>
-    <FIO>Aнтон</FIO>
-    <Birthdate>10.02.1981</Birthdate>
-    <Position>Администратор</Position>
-    <Salary>67000</Salary>
+    <ID>9</ID>
+    <FIO>Новичков</FIO>
+    <Birthdate>10.02.1983</Birthdate>
+    <Position>Менеджер</Position>
+    <Salary>78000</Salary>
+  </Employee>
+  <Employee>
+    <ID>12</ID>
+    <FIO>Дудов</FIO>
+    <Birthdate>10.11.1986</Birthdate>
+    <Position>водитель</Position>
+    <Salary>50000</Salary>
+  </Employee>
+  <Employee>
+    <ID>13</ID>
+    <FIO>Дудов</FIO>
+    <Birthdate>03.07.2001</Birthdate>
+    <Position>водитель</Position>
+    <Salary>50000</Salary>
+  </Employee>
+  <Employee>
+    <ID>14</ID>
+    <FIO>Иванов Иван Иванович</FIO>
+    <Birthdate>03.07.2001</Birthdate>
+    <Position>разработчик</Position>
+    <Salary>50000</Salary>
+  </Employee>
+  <Employee>
+    <ID>16</ID>
+    <FIO>Белов Алексей Геннадьевич</FIO>
+    <Birthdate>10.03.1984</Birthdate>
+    <Position>разработчик MVC</Position>
+    <Salary>50000</Salary>
+  </Employee>
+  <Employee>
+    <ID>18</ID>
+    <FIO>Дудов</FIO>
+    <Birthdate>03.07.2001</Birthdate>
+    <Position>разработчик</Position>
+    <Salary>100000</Salary>
   </Employee>
 </Employees>

@@ -53,7 +53,7 @@ namespace Managing_Employees.Models
 
             dataEmployee.Save(HttpContext.Current.Server.MapPath("~/App_Data/Employees.xml"));
         }
-
+        //Update Record
         public void UpdateEmployee(Employees employee)
         {
             XElement node = dataEmployee.Root.Elements("Employee").Where(i => (int)i.Element("ID") == employee.ID).FirstOrDefault();

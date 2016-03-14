@@ -4,24 +4,31 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Сотрудники компании</h2>
+@if (TempData["Message"]!=null)
+{
+    <div class="alert alert-dismissable alert-success">
+    <button type="button" class="close" data-dissmiss="alert">x</button>
+    @TempData["Message"].ToString()
+    </div>
+}
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Добавить нового сотрудника", "Create",null,new {@class="btn btn-info" })
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("ФИО","Index",new { SortOrder = (ViewBag.SortOrder==null?"Asc":(ViewBag.SortOrder == "Asc" ? "Desc":"Asc")) , SortBy = "FIO"})
+            @Html.ActionLink("ФИО","Index",new { SortOrder = (ViewBag.SortOrder==null?"Asc":(ViewBag.SortOrder == "Asc" ? "Desc":"Asc")) , SortBy = "FIO", page = (ViewBag.Page== null ? "1":ViewBag.Page)})
         </th>
         <th>
-            @Html.ActionLink("Дата рождения", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), SortBy = "Birthdate" })
+            @Html.ActionLink("Дата рождения", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), SortBy = "Birthdate", page = (ViewBag.Page == null ? "1" : ViewBag.Page) })
         </th>
         <th>
-            @Html.ActionLink("Должность", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), SortBy = "Position" })
+            @Html.ActionLink("Должность", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), SortBy = "Position", page = (ViewBag.Page == null ? "1" : ViewBag.Page) })
         </th>
         <th>
-            @Html.ActionLink("Заработная плата", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), SortBy = "Salary" })
+            @Html.ActionLink("Заработная плата", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), SortBy = "Salary", page = (ViewBag.Page == null ? "1" : ViewBag.Page) })
         </th>
         <th></th>
     </tr>
@@ -41,11 +48,17 @@
             @Html.DisplayFor(modelItem => item.Salary)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("редактировать", "Edit", new { id=item.ID }, new { @class = "btn btn-primary" }) |
+            @Html.Raw("<img src='/images/delete.png' title='Edit' onclick='DeleteEmployee(" + item.ID + ")' />")
         </td>
     </tr>
 }
 
 </table>
+@{
+    double totalPage = @ViewBag.TotalPages;
+}
+@for (int i = 1; i <= totalPage; i++)
+{
+  @Ajax.ActionLink(i.ToString()+" ","Index",new { SortOrder =(ViewBag.SortOrder == null ? "Asc": ViewBag.SortOrder), SortBy=(ViewBag.SortBy == null ? "FIO" : ViewBag.SortBy),Page=i }, new AjaxOptions() { InsertionMode = InsertionMode.Replace, UpdateTargetId = "pagingсоntent" }, new { @class= "btn btn-success btn-sm" } )
+}
